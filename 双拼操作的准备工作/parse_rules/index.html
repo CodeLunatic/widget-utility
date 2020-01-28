@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>双拼</title>
+    <script>
+        var Shuang = {resource: {scheme: {}}};
+    </script>
+    <script src="daniu.js"></script>
+    <script src="guobiao.js"></script>
+    <script src="jiandao3.js"></script>
+    <script src="jiandao6.js"></script>
+    <script src="pinyinjiajia.js"></script>
+    <script src="sougou.js"></script>
+    <script src="weiruan.js"></script>
+    <script src="xiaoguan.js"></script>
+    <script src="xiaohe.js"></script>
+    <script src="xiaolang.js"></script>
+    <script src="xiaoyue.js"></script>
+    <script src="zhinengabc.js"></script>
+    <script src="ziguang.js"></script>
+    <script src="ziranma.js"></script>
+</head>
+<body>
+<script>
+    var scheme = Shuang.resource.scheme;
+    for (var i in scheme) {
+        var object = scheme[i];
+        document.write(object.name + "<br>");
+        var sheng = object.detail.sheng
+        document.write("[sheng]<br>");
+        for (var i in sheng) {
+            document.write(i + "=" + sheng[i] + "<br>");
+        }
+        document.write("[yun]<br>");
+        var yun = object.detail.yun;
+        for (var i in yun) {
+            document.write(i + "=" + yun[i] + "<br>");
+        }
+        document.write("[yinjie]<br>");
+        var other = object.detail.other;
+        for (var i in other) {
+            document.write(i + "=" + other[i] + "<br>");
+        }
+    }
+</script>
+</body>
+</html>

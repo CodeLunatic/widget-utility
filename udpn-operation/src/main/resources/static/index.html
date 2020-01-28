@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双拼转换工具</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <br>
+    请选择双拼方案:
+    <select class="form-control" id="udpnType">
+        <option value="wzrr">微软双拼</option>
+        <option value="gobc">国标双拼</option>
+        <option value="jwjw">拼音加加双拼</option>
+        <option value="sbgb">搜狗双拼</option>
+        <option value="xche">小鹤双拼</option>
+        <option value="ving">智能ABC双拼</option>
+        <option value="zigd">紫光双拼</option>
+        <option value="zirj">自然码双拼</option>
+    </select>
+    <br>
+    请输入你要转换的内容:
+    <textarea class="form-control" id="content" style="height: 200px;"></textarea>
+    <br>
+    <div class="text-center">
+        <input class="btn btn-primary col-3 convert" data-operation="hanzi2UDPN" type="button" value="汉字转双拼">
+        <input class="btn btn-primary col-3 convert" data-operation="pinyin2UDPN" type="button" value="拼音转双拼">
+        <input class="btn btn-primary col-3 convert" data-operation="udpn2Pinyin" type="button" value="双拼转拼音">
+    </div>
+    <br>
+    <div class="form-control" id="result" style="height: 200px; overflow-y: auto;"></div>
+</div>
+<script>
+    $(".convert").click(function () {
+        var operation = $(this).data("operation");
+        var udpnType = $("#udpnType").val();
+        var content = $("#content").val();
+        $.post(
+            "/" + operation,
+            {"text": content, "udpnType": udpnType},
+            function (result) {
+                if (result.success) {
+                    $("#result").text(result.message);
+                } else {
+                    alert(result.message);
+                }
+            }
+        )
+    });
+</script>
+</body>
+</html>
